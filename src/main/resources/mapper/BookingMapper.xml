@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.BookingMapper">
+
+    <insert id="insertBooking" parameterType="com.example.demo.entity.Booking">
+        INSERT INTO booking (
+            booking_id,
+            base_id,
+            booking_date,
+            participants,
+            contact_name,
+            contact_phone,
+            remark,
+            status,
+            created_at
+        ) VALUES (
+                     #{bookingId},
+                     #{baseId},
+                     #{bookingDate},
+                     #{participants},
+                     #{contactName},
+                     #{contactPhone},
+                     #{remark},
+                     #{status},
+                     #{createdAt}
+                 )
+    </insert>
+
+    <select id="sumConfirmedParticipantsByBaseIdAndDate" resultType="int">
+        SELECT COALESCE(SUM(participants), 0)
+        FROM booking
+        WHERE base_id = #{baseId}
+          AND booking.booking_date = #{bookingDate}
+          AND status = 'CONFIRMED'
+    </select>
+
+</mapper>

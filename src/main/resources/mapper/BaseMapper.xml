@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BaseMapper">
+
+    <select id="selectBases" resultType="com.example.demo.entity.StudyBase">
+        SELECT sb.* FROM study_base sb
+        <if test="themes != null and themes.size() > 0">
+            JOIN base_tag bt ON sb.id = bt.base_id
+        </if>
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (sb.name LIKE CONCAT('%', #{keyword}, '%') OR sb.location LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="themes != null and themes.size() > 0">
+                AND bt.tag_name IN
+                <foreach collection="themes" item="theme" open="(" separator="," close=")">
+                    #{theme}
+                </foreach>
+            </if>
+            <if test="region != null and region != ''">
+                AND sb.region = #{region}
+            </if>
+        </where>
+        GROUP BY sb.id
+        <choose>
+            <when test="sort == 'rating_desc'">
+                ORDER BY sb.rating DESC
+            </when>
+            <when test="sort == 'rating_asc'">
+                ORDER BY sb.rating ASC
+            </when>
+            <when test="sort == 'popularity_desc'">
+                ORDER BY sb.current_bookings DESC
+            </when>
+        </choose>
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="countBases" resultType="int">
+        SELECT COUNT(DISTINCT sb.id) FROM study_base sb
+        <if test="themes != null and themes.size() > 0">
+            JOIN base_tag bt ON sb.id = bt.base_id
+        </if>
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (sb.name LIKE CONCAT('%', #{keyword}, '%') OR sb.location LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="themes != null and themes.size() > 0">
+                AND bt.tag_name IN
+                <foreach collection="themes" item="theme" open="(" separator="," close=")">
+                    #{theme}
+                </foreach>
+            </if>
+            <if test="region != null and region != ''">
+                AND sb.region = #{region}
+            </if>
+        </where>
+    </select>
+</mapper>

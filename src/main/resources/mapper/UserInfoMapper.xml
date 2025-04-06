@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.UserInfoMapper">
+
+    <insert id="add" parameterType="UserInfo">
+        insert into test.user_info (username, password, authority)
+        values (#{username},#{password},#{authority});
+    </insert>
+
+    <delete id="delete" parameterType="Integer">
+        delete from test.user_info where id = #{id};
+    </delete>
+
+    <update id="update" parameterType="UserInfo">
+        update test.user_info set username=#{username},password=#{password},authority=#{authority}
+        where id=#{id};
+    </update>
+
+    <select id="queryById" parameterType="Integer" resultType="UserInfo">
+        select * from test.user_info where id=#{id};
+    </select>
+
+    <select id="queryAll" resultType="UserInfo">
+        select * from test.user_info;
+    </select>
+
+</mapper>

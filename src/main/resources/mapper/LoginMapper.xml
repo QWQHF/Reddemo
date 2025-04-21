@@ -5,9 +5,10 @@
 
 <mapper namespace="com.example.demo.mapper.LoginMapper">
     <select id="findUsername" parameterType="String" resultType="String">
-        select username from test.user_info where username=#{username};
+        select username from ${dbName}.user_info where username=#{username};
     </select>
+
     <select id="findPassword" parameterType="String" resultType="String">
-        select password from test.user_info where username=#{username};
+        select password from ${dbName}.user_info where username=#{username};
     </select>
 </mapper>

@@ -30,7 +30,7 @@ public interface BaseMapper {
     SELECT
         id,
         name,
-        main_image AS mainImage,
+        image,
         rating,
         location,
         description,
@@ -59,6 +59,6 @@ public interface BaseMapper {
     List<String> selectFacilitiesByBaseId(Long baseId);
 
     // 获取基地图片
-    @Select("SELECT image_url FROM base_image WHERE base_id = #{baseId} ORDER BY sort_order")
+    @Select("SELECT image FROM study_base WHERE id = #{baseId}")
     List<String> selectImagesByBaseId(Long baseId);
 }

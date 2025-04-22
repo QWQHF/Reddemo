@@ -74,7 +74,7 @@ public class BaseServiceImpl implements BaseService {
         BaseItem item = new BaseItem();
         item.setId(base.getId());
         item.setName(base.getName());
-        item.setImage(base.getMainImage());
+        item.setImage(base.getImage());
         item.setRating(base.getRating());
         item.setLocation(base.getLocation());
         item.setTags(base.getTags());
@@ -91,7 +91,7 @@ public class BaseServiceImpl implements BaseService {
         // 继承自BaseItem的属性
         detail.setId(base.getId());
         detail.setName(base.getName());
-        detail.setImage(base.getMainImage());
+        detail.setImage(base.getImage());
         detail.setRating(base.getRating());
         detail.setLocation(base.getLocation());
         detail.setTags(base.getTags());

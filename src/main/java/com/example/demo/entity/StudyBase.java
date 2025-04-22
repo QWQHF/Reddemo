@@ -9,7 +9,7 @@ import java.util.List;
 public class StudyBase {
     private Long id;
     private String name;
-    private String mainImage;
+    private String image;
     private Double rating;
     private String location;
     private String description;

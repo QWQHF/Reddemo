@@ -22,17 +22,6 @@
             </if>
         </where>
         GROUP BY sb.id
-        <choose>
-            <when test="sort == 'rating_desc'">
-                ORDER BY sb.rating DESC
-            </when>
-            <when test="sort == 'rating_asc'">
-                ORDER BY sb.rating ASC
-            </when>
-            <when test="sort == 'popularity_desc'">
-                ORDER BY sb.current_bookings DESC
-            </when>
-        </choose>
         LIMIT #{offset}, #{pageSize}
     </select>
 

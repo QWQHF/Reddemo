@@ -61,4 +61,8 @@ public interface BaseMapper {
     // 获取基地图片
     @Select("SELECT image FROM study_base WHERE id = #{baseId}")
     List<String> selectImagesByBaseId(Long baseId);
+
+    // 更新基地当前预约人数
+    @Update("UPDATE study_base SET current_bookings = (SELECT COUNT(*) FROM booking WHERE base_id = #{baseId} AND status = 'CONFIRMED') WHERE id = #{baseId}")
+    void updateCurrentBookings(Long baseId);
 }

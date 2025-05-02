@@ -8,25 +8,33 @@
         INSERT INTO booking (
             booking_id,
             base_id,
+            user_id,
             booking_date,
             participants,
             contact_name,
             contact_phone,
             remark,
             status,
-            created_at
+            created_at,
+            updated_at
         ) VALUES (
                      #{bookingId},
                      #{baseId},
+                     #{userId},
                      #{bookingDate},
                      #{participants},
                      #{contactName},
                      #{contactPhone},
                      #{remark},
                      #{status},
-                     #{createdAt}
+                     #{createdAt},
+                     #{updatedAt}
                  )
     </insert>
+
+    <delete id="deleteBookingById">
+        DELETE FROM booking WHERE base_id = #{baseId} AND user_id = #{userId}
+    </delete>
 
     <select id="sumConfirmedParticipantsByBaseIdAndDate" resultType="int">
         SELECT COALESCE(SUM(participants), 0)
@@ -35,5 +43,4 @@
           AND booking.booking_date = #{bookingDate}
           AND status = 'CONFIRMED'
     </select>
-
 </mapper>

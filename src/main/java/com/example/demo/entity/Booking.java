@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class Booking {
     private String bookingId;
     private Long baseId;
+    private Long userId;
     private LocalDate bookingDate;
     private Integer participants;
     private String contactName;
@@ -17,5 +18,6 @@ public class Booking {
     private String remark;
     private BookingStatus status;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
 

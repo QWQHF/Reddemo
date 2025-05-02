@@ -9,7 +9,8 @@ import java.time.LocalDate;
 // BookingMapper.java
 @Mapper
 public interface BookingMapper {
-    int insertBooking(Booking booking);
+    void insertBooking(Booking booking);
     int sumConfirmedParticipantsByBaseIdAndDate(@Param("baseId") Long baseId,
                                                 @Param("bookingDate") LocalDate date);
+    void deleteBookingById(Long baseId,Long userId);
 }

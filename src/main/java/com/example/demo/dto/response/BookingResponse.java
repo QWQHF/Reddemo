@@ -1,14 +1,16 @@
 package com.example.demo.dto.response;
 
-import lombok.Builder;
+import com.example.demo.entity.Booking;
+import com.example.demo.entity.StudyBase;
 import lombok.Data;
 
-// BookingResponse.java
 @Data
-@Builder
 public class BookingResponse {
-    private String bookingId;
-    private String status;
-    private String createdAt;
-}
+    private Booking booking;
+    private StudyBase base;
 
+    public BookingResponse(Booking booking, StudyBase base) {
+        this.booking = booking;
+        this.base = base;
+    }
+}

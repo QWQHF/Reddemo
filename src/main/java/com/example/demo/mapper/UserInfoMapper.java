@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.entity.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,5 +15,6 @@ public interface UserInfoMapper {
     void update(UserInfo userInfo);
     UserInfo queryById(Integer id);
     List<UserInfo> queryAll();
+    String findIdByUsername(String username);
 }
 

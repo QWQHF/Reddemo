@@ -10,5 +10,6 @@ public interface UserInfoService {
     void update(UserInfo userInfo);
     UserInfo queryById(Integer id);
     List<UserInfo> queryAll();
+    String findIdByUsername(String username);
 }
 

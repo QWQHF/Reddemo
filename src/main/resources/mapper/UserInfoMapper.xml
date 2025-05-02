@@ -26,5 +26,8 @@
     <select id="queryAll" resultType="UserInfo">
         select * from ${dbName}.user_info;
     </select>
+    <select id="findIdByUsername" resultType="java.lang.String">
+        select id from ${dbName}.user_info where username=#{username};
+    </select>
 
 </mapper>

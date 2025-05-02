@@ -37,4 +37,9 @@ public class UserInfoServiceImpl implements UserInfoService {
         public List<UserInfo> queryAll() {
             return userInfoMapper.queryAll();
         }
+
+    @Override
+    public String findIdByUsername(String username) {
+        return userInfoMapper.findIdByUsername(username);
+    }
 }
